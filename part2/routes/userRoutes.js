@@ -12,6 +12,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+app.get('/api/dogs', async (req, res) => {
+  try {
+    const [dogs] = await db.execute(`
+      SELECT dog_id, name AS dog_name, size, user.username AS owner_username
+      FROM Dogs
+      JOIN Users user ON user.user_id = Dogs.owner_id
+    `);
+    res.json(dogs);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
+
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
   const { username, email, password, role } = req.body;
