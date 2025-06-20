@@ -41,11 +41,10 @@
 <table class="table table-bordered table-striped mt-3">
   <thead>
     <tr>
-      <th>Dog ID</th>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Owner ID</th>
-      <th>Photo</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Owner</th>
+          <th>Photo</th>
     </tr>
   </thead>
   <tbody id="dog-picture-table"></tbody>
@@ -84,7 +83,6 @@
         const row = document.createElement('tr');
 
 row.innerHTML = `
-  <td>${dog.dog_id}</td>
   <td>${dog.dog_name}</td>
   <td>${dog.size}</td>
   <td>${dog.owner_id}</td>
