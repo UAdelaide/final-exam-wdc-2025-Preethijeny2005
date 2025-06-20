@@ -73,14 +73,22 @@
 
   <script>
 fetch('/api/dogs')
-  .then(res => res.json())
+  .then(res => {
+    console.log('Dogs response status:', res.status);
+    return res.json();
+  })
   .then(async dogs => {
+    console.log('Dogs data:', dogs);
     const table = document.getElementById('dog-picture-table');
-
+    if (!table) {
+      console.error('Table body with id dog-picture-table not found!');
+      return;
+    }
     for (const dog of dogs) {
       try {
         const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
         const imgData = await imgRes.json();
+        console.log(`Adding dog ${dog.dog_name} with image`, imgData.message);
 
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -96,7 +104,6 @@ fetch('/api/dogs')
     }
   })
   .catch(err => console.error('Failed to load dogs:', err));
-
   </script>
 </body>
 </html>
