@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-
+// Using sessions - Middleware.
 app.use(session({
   secret: 'secretKey',
   resave: false,
