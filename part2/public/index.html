@@ -82,8 +82,8 @@
           const imgData = await imgRes.json();
 
           const row = document.createElement('tr');
-row.innerHTML =
-  <td>${dog.dog_id}</td>;
+row.innerHTML = `
+  <td>${dog.dog_id}</td>
   <td>${dog.dog_name}</td>;
   <td>${dog.size}</td>;
   <td>${dog.owner_username}</td>;
