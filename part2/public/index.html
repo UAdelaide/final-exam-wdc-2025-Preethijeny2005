@@ -72,7 +72,10 @@
     fetch('/api/dogs')
     .then(res=>res.json())
     .then(async dogs => {
-      const table = document.getElementById('dog-')
+      const table = document.getElementById('dog-picture-table');
+      for (const dog of dogs) {
+        
+      }
 
 
     })
