@@ -87,16 +87,11 @@ row.innerHTML =
   <td>${dog.dog_name}</td>;
   <td>${dog.size}</td>;
   <td>${dog.owner_username}</td>;
-  <td><img src="${imgData.message}" alt="Dog photo" width="100" /></td>
-;
+  <td><img src="${imgData.message}" alt="Dog photo" width="100" /></td>;
           table.appendChild(row);
         }
       })
       .catch(err => console.error('Failed to load dogs:', err));
   </script>
-</body>
-</html>
-
-
 </body>
 </html>
