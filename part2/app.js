@@ -13,12 +13,11 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(session({
-  secret: 'secret_key',
+  secret: 'secretKey',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
 }));
-
 
 
 // Routes
