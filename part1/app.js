@@ -42,7 +42,7 @@ let db;
 app.get('/api/dogs', async (req, res) => {
   try {
       const [dogs] = await db.execute(`SELECT dog.name AS dog_name, dog.size AS size, user.username AS owner_username
-        FROM 
+        FROM Dogs dog
         `);
     res.json(dogs);
   } catch (err) {
