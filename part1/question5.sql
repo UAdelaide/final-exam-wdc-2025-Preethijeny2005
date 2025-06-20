@@ -7,6 +7,9 @@ INSERT INTO Users (username, email, password_hash, role) VALUES
 ('sibin227', 'sibin@example.com', 'hashed227', 'owner');
 
 -- Insert: Five Dogs:
-INSERT INTO Dogs (name, size, owner_id)
+INSERT INTO Dogs (name, size, owner_id) VALUES
+()
+
+
 
 -- Insert: Five walk request:
