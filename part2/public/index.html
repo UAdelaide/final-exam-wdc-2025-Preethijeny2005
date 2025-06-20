@@ -72,29 +72,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    fetch('/api/dogs')
-      .then(res => res.json())
-      .then(async dogs => {
-        const table = document.getElementById('dog-picture-table');
-        for (const dog of dogs) {
-          const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
-          const imgData = await imgRes.json();
-
-          const row = document.createElement('tr');
-            row.innerHTML = `
-              <td>${dog.dog_name}</td>
-              <td>${dog.size}</td>
-              <td>${dog.owner_username}</td>
-              <td><img src="${imgData.message}" alt="Dog photo" width="100" /></td>
-            `;
-          table.appendChild(row);
-        }
-      })
-      .catch(err => console.error('Failed to load dogs:', err));
-  </script>
-</body>
-</html>
-
 fetch('/api/dogs')
   .then(res => res.json())
   .then(async dogs => {
@@ -114,3 +91,7 @@ fetch('/api/dogs')
     }
   })
   .catch(err => console.error('Failed to load dogs:', err));
+  </script>
+</body>
+</html>
+
