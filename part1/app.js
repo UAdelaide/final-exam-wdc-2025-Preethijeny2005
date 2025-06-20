@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql2/promise');
+const { Server } = require('http');
 
 var app = express();
 
@@ -54,4 +55,6 @@ app.get('/api/dogs', async (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 const port = 8080;
+Server.listen
+
 module.exports = app;
