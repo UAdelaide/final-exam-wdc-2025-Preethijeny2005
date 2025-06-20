@@ -12,6 +12,15 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
