@@ -52,6 +52,8 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
+app.get('api/walkrequests')
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const port = 8080;
