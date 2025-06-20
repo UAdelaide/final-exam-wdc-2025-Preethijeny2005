@@ -7,7 +7,7 @@ var session = require('express-session');
 var mysql = require('mysql');
 
 const app = express();
-const cors = require
+const cors = require('cors');
 
 
 // Middleware
