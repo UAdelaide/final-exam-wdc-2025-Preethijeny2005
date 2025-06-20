@@ -10,88 +10,89 @@
 <body class="bg-light">
 
   <div id="app" class="container py-5">
-
-    <form method="POST" action="api/users/login" class="mb-4 border p-3 bg-white rounded" style="max-width: 400px;">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
-        <input type="text" id="username" name="username" class="form-control" required>
-
-      </div>
-
-      <div class="mb-3">
-        <label for="pass" class="form-label">Password:</label>
-        <input type="password" id="pass" name="password" class="form-control" required>
-
-
-      </div>
-
-      <input type="submit" value="Log in" class="btn btn-outline-primary w-100">
-
-    </form>
-
-
-
-
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
+    <!-- Optional Dashboard Links -->
     <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
     <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
 
-    <form id="logoutForm" method="POST" action="/users/logout">
-      <button type="submit" class="btn btn-danger">Logout</button>
-
-    </form>
-
-    <h2 class="mt-5">All Registered Dogs</h2>
-    <table class="table table-bordered table-striped mt-3">
-      <thead>
-        <tr>
-              <th>Dog ID</th>
-              <th>Name</th>
-              <th>Size</th>
-              <th>Owner ID</th>
-              <th>Photo</th>
-        </tr>
-      </thead>
-      <tbody id="dog-picture-table"></tbody>
-    </table>
-
+    <dog-list-view></dog-list-view>
   </div>
 
+  <!-- DogListView Component Script -->
   <script>
+    const DogListView = {
+      template: `
+        <div class="doglist-container mt-5">
+          <h2 class="mb-4">All Registered Dogs</h2>
+          <div v-if="loading" class="text-muted">Loading dogs...</div>
+          <table v-else class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Owner Username</th>
+                <th>Photo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(dog, index) in dogs" :key="index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ dog.dog_name }}</td>
+                <td>{{ dog.size }}</td>
+                <td>{{ dog.owner_username }}</td>
+                <td>
+                  <img :src="dog.photo" alt="Dog Photo" width="100" class="rounded shadow-sm" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `,
+      data() {
+        return {
+          dogs: [],
+          loading: true
+        };
+      },
+      async mounted() {
+        try {
+          const response = await fetch('/api/dogs');
+          const data = await response.json();
+
+          const dogsWithPhotos = await Promise.all(data.map(async (dog) => {
+            const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
+            const imgData = await imgRes.json();
+            return { ...dog, photo: imgData.message };
+          }));
+
+          this.dogs = dogsWithPhotos;
+        } catch (err) {
+          console.error("Failed to load dogs:", err);
+          alert("Error loading dog data.");
+        } finally {
+          this.loading = false;
+        }
+      }
+    };
+
     const { createApp } = Vue;
-    createApp({
+    const app = createApp({
       data() {
         return {
           message: 'Welcome to the Dog Walking Service!'
         };
       }
-    }).mount('#app');
+    });
+
+    app.component('dog-list-view', DogListView);
+    app.mount('#app');
   </script>
 
+  <!-- Bootstrap JS (optional) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    fetch('/api/dogs')
-      .then(res => res.json())
-      .then(async dogs => {
-        const table = document.getElementById('dog-picture-table');
-        for (const dog of dogs) {
-          const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
-          const imgData = await imgRes.json();
-
-            const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${dog.dog_id}</td>
-            <td>${dog.dog_name}</td>
-            <td>${dog.size}</td>
-            <td>${dog.owner_username}</td>
-            <td><img src="${imgData.message}" alt="Dog photo" width="100" /></td>;`
-            table.appendChild(row);
-          }
-        })
-      .catch(err => console.error('Failed to load dogs:', err));
-  </script>
 </body>
 </html>
