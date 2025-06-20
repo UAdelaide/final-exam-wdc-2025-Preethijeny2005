@@ -8,7 +8,7 @@ INSERT INTO Users (username, email, password_hash, role) VALUES
 
 -- Insert: Five Dogs:
 INSERT INTO Dogs (name, size, owner_id) VALUES
-('Max', 'medium')
+('Max', 'medium', (SELECT user_id FROM Users WHERE username))
 
 
 
