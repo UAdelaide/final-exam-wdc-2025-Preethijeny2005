@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-app.get('/api/dogs', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
       SELECT dog_id, name AS dog_name, size, user.username AS owner_username
