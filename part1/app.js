@@ -52,7 +52,11 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
-app.get('api/walkrequests/open',sync(req, res))
+app.get('api/walkrequests/open', sync(req, res)=> {
+  try{
+    const[requests] = await db.
+  }
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 
