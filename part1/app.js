@@ -55,6 +55,8 @@ app.get('/api/dogs', async (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 const port = 8080;
-Server.listen
+app.listen(port()=> {
+    
+})
 
 module.exports = app;
