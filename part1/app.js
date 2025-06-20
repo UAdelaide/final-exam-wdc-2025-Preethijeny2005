@@ -52,7 +52,7 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
-app.get('api/walkrequests')
+app.get('api/walkrequests/open',sync(req, res))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
