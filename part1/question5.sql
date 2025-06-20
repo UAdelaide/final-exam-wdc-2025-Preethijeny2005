@@ -1,5 +1,5 @@
 -- Insert: Five Users:
-INSERT 
+INSERT INTO Users (username, email, password_hash)
 
 
 
