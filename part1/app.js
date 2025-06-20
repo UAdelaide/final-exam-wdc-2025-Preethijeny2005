@@ -41,7 +41,7 @@ let db;
 // Route to return books as JSON
 app.get('/api/dogs', async (req, res) => {
   try {
-      const [dogs] = await db.execute(`SELECT 
+      const [dogs] = await db.execute(`SELECT dog.name AS dog_name, 
         `);
     res.json(dogs);
   } catch (err) {
