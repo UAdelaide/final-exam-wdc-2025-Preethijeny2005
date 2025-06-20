@@ -8,6 +8,9 @@ var mysql = require('mysql');
 
 const app = express();
 
+const dogsRouter = require('./routes/dogs');  // adjust path as needed
+
+
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
