@@ -8,7 +8,6 @@ var mysql = require('mysql');
 
 const app = express();
 
-const dogsRouter = require('./routes/dogs');  // adjust path as needed
 
 
 // Middleware
@@ -24,9 +23,12 @@ app.use(session({
 }));
 
 
+
 // Routes
 const walkRoutes = require('./routes/walkRoutes');
 const userRoutes = require('./routes/userRoutes');
+const dogsRouter = require('./routes/dogs');
+
 
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
