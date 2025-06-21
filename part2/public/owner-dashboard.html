@@ -119,10 +119,13 @@
 
                 // Adding a logout button to owner-dashbaord.html:
 
-        async function logout(){
-          await fetch('/api/users/logout',{method: 'POST' });
-          window.location.href = '/';
-        }
+    async function logout(){
+      await fetch('/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      window.location.href = '/';
+    }
 
         async function getDogs(){
           try {
