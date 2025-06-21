@@ -39,7 +39,9 @@ router.post('/login', async (req, res) => {
 
     if (rows.length === 1) {
       const user = rows[0];
-      req/
+      req.session.user = user;
+      res.json({ success: true, user });
+      
     }
 
 
