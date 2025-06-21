@@ -77,6 +77,8 @@ app.get('/api/walkrequests/open', async (req, res) => {
 
 
 // third quesiton"
+// Enter the code specific to the /api/walkers/summary route here.
+
 app.get('/api/walkers/summary', async (req, res) => {
   try {
     const [summary] = await db.execute(`SELECT user.username AS walker_username,
@@ -95,6 +97,8 @@ app.get('/api/walkers/summary', async (req, res) => {
     res.status(500).json({ error: 'Failed to get the walkers requests' });
   }
 });
+
+
 
 // provided below:
 
