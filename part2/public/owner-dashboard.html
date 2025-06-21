@@ -126,7 +126,7 @@
             dogs.value = await res.json();
 
           } catch (err) {
-            
+            error.value = 'Failed to retrive the dogs';
           }
         }
 
