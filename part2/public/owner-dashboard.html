@@ -106,10 +106,20 @@
         async function getCurrentUser(){
           try {
             const res = await fetch('/api/users/me');
-            if(!res.ok) throw new Error('Users not logged in');
-            const user = 
+            if (!res.ok) throw new Error('Users not logged in');
+            const user = await res.json();
+            return user.user_id;
+          } catch(err){
+            console.error('Failed to get the current user ID', err);
+            return null;
           }
         }
+        async function logout(){
+          await fetch('/api/users/logout',{method: 'POST' });
+          window.location.href = '/';
+        }
+
+        
 
 
 
