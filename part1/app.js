@@ -57,6 +57,8 @@ app.get('/api/dogs', async (req, res) => {
 });
 
 // second question
+// Enter the code specific to the /api/walkrequests/open route here.
+
 
 app.get('/api/walkrequests/open', async (req, res) => {
   try {
