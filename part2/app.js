@@ -34,8 +34,9 @@ app.use('/api/dogs', dogsRouter);
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(Server running at http:localhost:${port});
+  console.log(`Server running at http://localhost:${port}`);
 });
+
 
 
 // Export the app instead of listening here
