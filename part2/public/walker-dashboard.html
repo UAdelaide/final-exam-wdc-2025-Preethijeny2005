@@ -50,7 +50,7 @@
             const res = await fetch('/api/users/me');
             if (!res.ok) throw new Error("Failed to get current user");
             const user = await res.json();
-            // walker Id: 
+            // walker Id:
             walkerID.value = user.user_id;
           } catch (err) {
             error.value = "Could not fetch user ID";
@@ -66,6 +66,12 @@
           } catch (err) {
             error.value = err.message;
           }
+        }
+
+        // Adding a logout button to walker-dashbaord:
+          async function logout(){
+          await fetch('/api/users/logout',{method: 'POST' });
+          window.location.href = '/';
         }
 
         async function applyToWalk(requestId) {
