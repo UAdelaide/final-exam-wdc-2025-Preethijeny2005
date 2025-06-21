@@ -16,7 +16,7 @@
 
   <div id="app" class="container py-5">
 
-    <form method="POST" action="api/users/login" class="mb-4 border p-3 bg-white rounded login-form-max-width">
+<form @submit.prevent="login" class="mb-4 border p-3 bg-white rounded login-form-max-width">
       <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
         <input type="text" id="username" name="username" class="form-control" required>
