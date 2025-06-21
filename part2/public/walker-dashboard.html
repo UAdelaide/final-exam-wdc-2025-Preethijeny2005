@@ -72,11 +72,20 @@
           }
         }
 
-        // Adding a logout button to walker-dashbaord.html:
-          async function logout(){
-          await fetch('/api/users/logout',{method: 'POST' });
-          window.location.href = '/';
-        }
+                // Adding a logout button to walked-dashbaord.html:
+
+            async function logout() {
+                fetch('/auth/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                })
+                .then(() => {
+                    window.location.href = '/';
+                })
+                .catch(() => {
+                    console.log('Logout failed');
+                });
+            }
 
         async function applyToWalk(requestId) {
           try {
