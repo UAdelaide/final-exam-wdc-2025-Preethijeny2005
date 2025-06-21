@@ -40,6 +40,7 @@ let db;
 })();
 
 // Route to return books as JSON
+// First queston
 app.get('/api/dogs', async (req, res) => {
   try {
     const [dogs] = await db.execute(`
@@ -55,8 +56,8 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
-app.get('api/walkrequests/open', sync(req, res)=> {
-  try{
+app.get('/api/walkrequests/open', async (req, res) => {
+  try {
     const [requests] = await db.execute(`SELECT req.request_id, dog.name AS dog_name, req.requested_time, req.duration_minutes, req.location, user.username AS owner_username
         FROM WalkRequests req
         JOIN Dogs dog ON req.dog_id = dog.dog_id
@@ -66,9 +67,13 @@ app.get('api/walkrequests/open', sync(req, res)=> {
     res.json(requests);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to get the walk requests' });
+    res.status(500).json({ error: 'Failed to fetch walk requests' });
   }
 });
+
+
+
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
