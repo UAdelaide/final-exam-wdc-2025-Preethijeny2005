@@ -26,6 +26,13 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+router.post('/login', asy)
+
+
+
+
+
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
   const { username, email, password, role } = req.body;
