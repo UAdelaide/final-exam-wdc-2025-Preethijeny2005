@@ -74,10 +74,8 @@ app.get('/api/walkrequests/open', async (req, res) => {
 });
 
 
-
-
 // third quesiton"
-app.get('/api/walkrequests/open', async (req, res) => {
+app.get('/api/walkers/summary', async (req, res) => {
   try {
     const [requests] = await db.execute(`SELECT req.request_id, dog.name AS dog_name, req.requested_time, req.duration_minutes, req.location, user.username AS owner_username
         FROM WalkRequests req
