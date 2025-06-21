@@ -1,17 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Dog Walking Service</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-</head>
-<body class="bg-light">
+  <style>
+    body {
+      background-color: #ff00ff;
+    }
 
+    .word-dog {
+      color: red;
+      font-family: 'Impact', fantasy;
+      font-size: 3rem;
+    }
+
+    .word-of {
+      color: lime;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 3rem;
+    }
+
+    .word-the {
+      color: cyan;
+      font-family: 'Courier New', monospace;
+      font-size: 3rem;
+    }
+
+    .word-day {
+      color: yellow;
+      font-family: 'Brush Script MT', cursive;
+      font-size: 3rem;
+    }
+
+    .word-exclaim {
+      color: black;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 3rem;
+    }
+
+    #next-dog-box {
+      position: fixed;
+      bottom: 5px;
+      right: 5px;
+      width: 60px;
+      height: 25px;
+      background-color: #222;
+      border: 1px solid #999;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    #next-dog-box button {
+      font-size: 6px;
+      padding: 1px 2px;
+      background-color: #ff6600; /* bright orange */
+      color: #ff9900;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 0.5px;
+      font-weight: bold;
+      filter: drop-shadow(0 0 1px #990000);
+    }
+
+    #next-dog-box button:hover {
+      background-color: #ff8533;
+      color: #fff3e6;
+    }
+  </style>
+</head>
+<body>
   <div id="app" class="text-center mt-4">
-    <h1 style="color: #ffff66; text-shadow: 0 0 2px #ffff66;">Dog of the day!</h1>
-    <img :src="dogImage" class="img-fluid mt-3">
+    <h1>
+      <span class="word-dog">Dog</span>
+      <span class="word-of">of</span>
+      <span class="word-the">the</span>
+      <span class="word-day">day</span><span class="word-exclaim">!</span>
+    </h1>
+    <img :src="dogImage" class="img-fluid mt-3" />
+    <div id="next-dog-box">
+      <button @click="fetchDogImages">Next</button>
+    </div>
   </div>
 
   <script>
@@ -19,17 +95,17 @@
     createApp({
       data() {
         return {
-            dogImage: ''
+          dogImage: ''
         };
       },
-      mounted(){
+      mounted() {
         this.fetchDogImages();
       },
       methods: {
-        async fetchDogImages(){
-            const response = await fetch('https://dog.ceo/api/breeds/image/random');
-            const data = await response.json();
-            this.dogImage = data.message;
+        async fetchDogImages() {
+          const response = await fetch('https://dog.ceo/api/breeds/image/random');
+          const data = await response.json();
+          this.dogImage = data.message;
         }
       }
     }).mount('#app');
