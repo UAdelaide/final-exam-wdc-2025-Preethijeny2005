@@ -31,7 +31,8 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // cquery with 
+    // cSQL query to check if the user is matching the database or not
+    // 
     const [rows] = await db.query(`
       SELECT user_id, username, role FROM Users
       WHERE username = ? AND password_hash = ?
