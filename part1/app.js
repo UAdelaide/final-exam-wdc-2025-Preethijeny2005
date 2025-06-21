@@ -63,7 +63,8 @@ app.get('api/walkrequests/open', sync(req, res)=> {
         JOIN Users user ON dog.owner_id = user.user_id
         WHERE req.status = 'open'
         `);
-    res
+    res.json(requests);
+    
 
 })
 
