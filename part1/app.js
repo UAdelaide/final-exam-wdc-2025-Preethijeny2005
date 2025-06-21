@@ -63,10 +63,12 @@ app.get('api/walkrequests/open', sync(req, res)=> {
         JOIN Users user ON dog.owner_id = user.user_id
         WHERE req.status = 'open'
         `);
-    res.json(requests);
-    
-
-})
+    res.json(dogs);
+  } catch (err) {
+    console.error('Error fetching dogs:', err);
+    res.status(500).json({ error: 'Failed to get the dogs' });
+  }
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
