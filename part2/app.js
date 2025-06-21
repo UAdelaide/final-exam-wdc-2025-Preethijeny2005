@@ -33,6 +33,8 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dogs', dogsRouter);
+app.use('/auth', authRoutes);
+
 
 const port = 3000;
 app.listen(port, () => {
