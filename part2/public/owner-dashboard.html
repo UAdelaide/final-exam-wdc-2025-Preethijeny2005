@@ -114,12 +114,17 @@
             return null;
           }
         }
+
         async function logout(){
           await fetch('/api/users/logout',{method: 'POST' });
           window.location.href = '/';
         }
 
-        
+        async function getDogs(){
+          
+        }
+
+
 
 
 
