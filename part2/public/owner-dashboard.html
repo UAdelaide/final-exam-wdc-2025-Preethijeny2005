@@ -130,11 +130,13 @@
 
         onMounted(() => {
           loadWalks();
+          getDogs();
         });
 
         return {
           form,
           walks,
+          dogs,
           message,
           error,
           submitWalkRequest
