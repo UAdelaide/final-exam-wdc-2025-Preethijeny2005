@@ -83,8 +83,9 @@
           if(response.ok && result.user) {
             if(result.user.role === 'owner'){
               window.location.href = 'owner-dashboard.html';
-              
-            }
+
+            } else if(result.user.role === 'owner'){
+              window.location.href = 'owner-dashboard.html';
           }
 
 
