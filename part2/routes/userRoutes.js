@@ -32,12 +32,13 @@ router.post('/login', async (req, res) => {
 
   try {
     // cSQL query to check if the user is matching the database or not
-    // 
+    // do not need registration
     const [rows] = await db.query(`
       SELECT user_id, username, role FROM Users
       WHERE username = ? AND password_hash = ?
     `, [username, password]);
 
+   // check is the user found
     if (rows.length === 1) {
       const user = rows[0];
       req.session.user = user;
