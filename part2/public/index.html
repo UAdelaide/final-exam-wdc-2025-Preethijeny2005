@@ -71,7 +71,6 @@ fetch('/api/dogs')
     const table = document.getElementById('dog-picture-table');
     if (!table) return;
     table.innerHTML = '';
-    // Map dog array to promises of image fetch + row append
     await Promise.all(dogs.map(async dog => {
       try {
         const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
