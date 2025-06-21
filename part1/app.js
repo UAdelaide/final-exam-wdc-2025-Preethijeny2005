@@ -57,8 +57,14 @@ app.get('/api/dogs', async (req, res) => {
 
 app.get('api/walkrequests/open', sync(req, res)=> {
   try{
-    const[requests] = await db.execute(`SELECT req.request_id, dog.name AS dog_name, req.requested_time, req.dureation_minutes, req.location,user`)
-  }
+    const [requests] = await db.execute(`SELECT req.request_id, dog.name AS dog_name, req.requested_time, req.duration_minutes, req.location, user.username AS owner_username
+        FROM WalkRequests req
+        JOIN Dogs dog ON req.dog_id = dog.dog_id
+        JOIN Users user ON dog.owner_id = user.user_id
+        WHERE req.status = 'open'
+        `);
+    res
+
 })
 
 app.use(express.static(path.join(__dirname, 'public')));
