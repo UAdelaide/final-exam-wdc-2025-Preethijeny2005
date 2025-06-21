@@ -31,7 +31,8 @@ router.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const [rows] = await
+    const [rows] = await db.query(`
+      SELECT user_id`)
   }
 })
 
