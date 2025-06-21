@@ -123,6 +123,9 @@
         async function getDogs(){
           try {
             const res = await fetch('/api/users/dog');
+            dogs.value = await res.json();
+
+          } catch (err) {
             
           }
         }
