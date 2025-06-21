@@ -37,7 +37,10 @@ router.post('/login', async (req, res) => {
 
       `, [username, password]);
 
-    if()
+    if (rows.length === 1) {
+      const user = rows[0];
+      req/
+    }
 
 
   }
