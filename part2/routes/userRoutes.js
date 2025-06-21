@@ -34,8 +34,7 @@ router.post('/login', async (req, res) => {
     const [rows] = await db.query(`
       SELECT user_id, username, role FROM Users
       WHERE username = ? AND password_hash = ?
-
-      `, [username, password]);
+    `, [username, password]);
 
     if (rows.length === 1) {
       const user = rows[0];
@@ -43,16 +42,13 @@ router.post('/login', async (req, res) => {
       res.json({ success: true, user });
     } else {
       res.status(401).json({ success: false, message: 'Incorrect username and password' });
-
-    } catch (error) {
-      console.error('Login Error: ', error);
-      res.status(500).json({ success: false, message: 'Server Error' });
     }
 
+  } catch (error) {
+    console.error('Login Error: ', error);
+    res.status(500).json({ success: false, message: 'Server Error' });
   }
 });
-
-
 
 
 
