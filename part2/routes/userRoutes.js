@@ -45,7 +45,8 @@ router.post('/login', async (req, res) => {
       res.status(401).json({ success: false, message: 'Incorrect username and password' });
 
     } catch (error) {
-      console.error('Login Error: ', error)
+      console.error('Login Error: ', error);
+      res.status(500).json({success: false})
     }
 
 
