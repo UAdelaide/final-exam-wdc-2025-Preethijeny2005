@@ -77,20 +77,22 @@ app.get('/api/walkrequests/open', async (req, res) => {
 // third quesiton"
 app.get('/api/walkers/summary', async (req, res) => {
   try {
-    const [summary] = await db.execute(`SELECT req.request_id, dog.name AS dog_name, req.requested_time, req.duration_minutes, req.location, user.username AS owner_username
-        FROM WalkRequests req
-        JOIN Dogs dog ON req.dog_id = dog.dog_id
-        JOIN Users user ON dog.owner_id = user.user_id
-        WHERE req.status = 'open'
-        `);
+    const [summary] = await db.execute(`SELECT user.username AS walker_username,
+      COUNT(r.rating_id) AS total_ratings,
+      ROUND(AVG(r.rating), 1) AS average_rating,
+      COUNT(CASE WHEN walk.status = 'completed' THEN 1 END) AS completed_walks
+      From Users user
+      LEFT JOIN WalkRatings r ON user.user_id = r.walker_id
+      LEFT JOIN WalkRequests walk ON r.request_id = walk.request_id
+      WHERE user.role = 'walker'
+      GROUP BY user.user_id;
+      `);
     res.json(summary);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to get the walkers requests' });
   }
 });
-
-
 
 
 app.use(express.static(path.join(__dirname, 'public')));
