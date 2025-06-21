@@ -115,6 +115,8 @@
           }
         }
 
+                // Adding a logout button to owner-dashbaord.html:
+
         async function logout(){
           await fetch('/api/users/logout',{method: 'POST' });
           window.location.href = '/';
