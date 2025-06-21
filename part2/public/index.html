@@ -19,7 +19,7 @@
 <form @submit.prevent="login" class="mb-4 border p-3 bg-white rounded login-form-max-width">
       <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
-        <input type="text" id="username" name="username" class="form-control" required>
+        <input type="text" id="username" v-model="username" class="form-control" required>
       </div>
       <div class="mb-3">
         <label for="pass" class="form-label">Password:</label>
